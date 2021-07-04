@@ -1,0 +1,34 @@
+[Info]
+name ="95aniSS64"
+displayname ="95ani"
+versiondate =01,19,2019
+mugenversion =1.1
+formerauthor ="man"
+author ="Bannana"
+pal.defaults =1
+localcoord = 320,240
+[Files]
+sprite =95ani.sff
+anim =95ani.air
+sound =95ani.snd
+cmd =SS64.cmd
+cns =Basics.cns
+stcommon =common1.cns
+st = Basics.cns
+st2 = Throwing States.cns
+st3 = Specials.cns
+st4 = Hypers.cns
+st5 = -2.cns
+st6 = Misc.cns
+pal1=Slash.act
+pal2=Bust.act
+pal3=Slash.act
+pal4=Bust.act
+pal5=
+pal6=Slashrage.act
+pal7=Bustrage.act
+pal8=
+
+[Arcade]
+intro.storyboard =
+ending.storyboard =

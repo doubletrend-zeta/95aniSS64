@@ -1,0 +1,31 @@
+[Info]
+name="95ani"
+displayname="95ani"
+versiondate=2006/03/12
+mugenversion=04,06,2004
+author="man"
+pal.defaults=1
+[Files]
+sprite	=95ani.sff
+sound	=95ani.snd
+anim	=95ani.air
+cmd	=95ani.cmd
+cns	=95ani.cns
+st	=95ani.cns
+stcommon=common1.cns
+pal1=95ani1.act
+pal2=95ani2.act
+pal3=95ani3.act
+pal4=95ani1.act
+pal5=95ani3.act
+pal6=95ani4.act
+pal7=95ani2.act
+pal8=95ani3.act
+pal9=95ani4.act
+st1=95ani-N.cns
+st2=95ani-S.cns
+st3=95ani-2-3.cns
+st4=95ani-H.cns
+[Arcade]
+intro.storyboard=
+ending.storyboard=

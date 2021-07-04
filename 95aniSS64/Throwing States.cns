@@ -1,0 +1,151 @@
+[Statedef 800]
+type     = S
+movetype = A
+physics  = S
+juggle   = 0
+velset   = 0,0
+ctrl     = 0
+anim     = 800
+sprpriority = 2
+
+[State 800, 投げ]
+type = HitDef
+trigger1 = time = 0
+attr = S, NT
+hitflag = M-
+priority = 1, Miss
+sparkno = -1
+p1sprpriority = 1
+p2sprpriority = 0
+p1facing = 1
+p2facing = 1
+p1stateno = 810
+p2stateno = 820
+guard.dist = 0
+fall=1
+fall.recover = 0
+
+[State 800, ステート変更]
+type = ChangeState
+Trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; 投げ成功
+
+[Statedef 810]
+type     = S
+movetype = A
+physics  = N
+poweradd = 60
+ctrl     = 0
+anim     = 810
+
+[State 810, 1]
+type = TargetBind
+trigger1 = AnimElem = 1
+pos = 40, -100
+
+[State 810, 投げ幅]
+type = Width
+trigger1 = AnimElemTime(2) >= 0
+edge = 60,0
+
+[State 810, 2]
+type = TargetBind
+trigger1 = AnimElem = 2
+pos = 35, -110
+
+[State 810, 3]
+type = TargetBind
+trigger1 = AnimElem = 3
+pos = 10, -115
+
+[State 810, 4]
+type = PlaySnd
+trigger1 = animelem = 5
+value = f5,4
+
+[State 810, 4]
+type = PlaySnd
+trigger1 = animelem = 5
+value = 0,3
+
+[State 810, 4]
+type = PlaySnd
+trigger1 = animelem = 1
+value = 800,0
+
+[State 810, 4]
+type = envshake
+trigger1 = animelem = 5
+time = 12
+
+[State 810, 5]
+type = TargetBind
+trigger1 = AnimElem = 5
+pos = 80, -20
+
+[State 810, ダメージ]
+type = TargetLifeAdd
+trigger1 = AnimElem = 5
+value = -70
+
+[State 810, flash]
+type = GameMakeAnim
+trigger1 = AnimElem = 5
+value = 3
+pos = 70,-70
+
+[State 810, 相手State変更]
+type = TargetState
+trigger1 = AnimElem = 5
+value = 821
+
+[State 810, 移動]
+type = PosAdd
+trigger1 = AnimElem = 7
+x = -30
+
+[State 810, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+trigger2 = NumTarget = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; 投げ相手側
+[Statedef 820]
+type     = A
+movetype = H
+physics  = N
+velset   = 0,0
+
+[State 820, 1]
+type = ScreenBound
+trigger1 = 1
+movecamera = 0,0
+
+[State 820, 2]
+type = null;SelfState
+trigger1 = (command = "b" && time < 3) || time = 300
+value = 50
+
+[State 820, 3]
+type = ChangeAnim2
+Trigger1 = Time = 0
+value = 820
+
+;投げ解放
+[Statedef 821]
+type     = A
+movetype = H
+physics  = N
+velset   = -3,-1
+
+[State 820, 4]
+type = SelfState
+trigger1 = 1
+value = 5050

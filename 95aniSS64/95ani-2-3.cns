@@ -1,0 +1,211 @@
+;-----------------------------------------------------------------------------
+[Statedef -2];常時監視ステート(相手に行動を制御されても関係無く常に実行される)
+;----------------------------------------------------------------------------
+;[State -2, Y座標強制修復]
+;type = ChangeState
+;triggerall = Pos Y < -1200 || Pos Y > 240
+;trigger1 = !ctrl && alive && !Lose
+;value = 51
+
+[State -2, stderr]
+type = DisplayToClipboard
+trigger1 = 1
+text = "HLP:%d  EXP:%d  PRJ:%d"
+params = numhelper, numexplod, numproj
+ignorehitpause = 1
+
+[State -2, stderr]
+type = AppendToClipboard
+trigger1 = NumEnemy
+text = " | H:%d E:%d P:%d"
+params = (enemy,numhelper),(enemy,numexplod),(enemy,numproj)
+ignorehitpause = 1
+
+[State -2, stderr]
+type = AppendToClipboard
+trigger1 = NumTarget
+text = " | TGT:%d LIFE:%d"
+params = numtarget,(target,life)
+ignorehitpause = 1
+
+;[State -2, stderr]
+;type = AppendToClipboard
+;trigger1 = 1
+;text = "\nPos %d, %d | Vel %d, %d"
+;params = ceil(Pos X),floor(Pos Y),ceil(Vel X*10),floor(Vel Y*10)
+;ignorehitpause = 1
+
+;[State -2, stderr]
+;type = AppendToClipboard
+;trigger1 = P2MoveType = A
+;text = " HEYHEY"
+;ignorehitpause = 1
+
+;[State -2, stderr]
+;type = AppendToClipboard
+;trigger1 = P2MoveType = H
+;text = " UBOA-"
+;ignorehitpause = 1
+;----------------------------------------------------------------------------
+
+
+
+[State -2, gauge2,1]
+type = explod
+triggerall = TeamSide = 1
+trigger1 = NumExplod(5) = 0
+anim = 7000
+ontop = 1
+id = 5
+supermove = 0
+sprpriority = 4
+postype = left
+pos = 9,212
+bindtime = -1
+pausemovetime = 9999
+ignorehitpause = 1
+ownpal = 1
+
+[State -2, gauge2,2]
+type = explod
+triggerall = TeamSide = 2
+trigger1 = NumExplod(5) = 0
+anim = 7000
+ontop = 1
+id = 5
+facing = 1
+supermove = 0
+sprpriority = 4
+postype = right
+pos = -9,212
+bindtime = -1
+pausemovetime = 9999
+ignorehitpause = 1
+ownpal = 1
+
+[State -2, gauge2,1]
+type = explod
+triggerall = TeamSide = 1
+trigger1 = NumExplod(6) = 0
+anim = 7010
+ontop = 1
+id = 6
+supermove = 0
+sprpriority = 6
+postype = left
+pos = 9,212
+bindtime = -1
+pausemovetime = 9999
+ignorehitpause = 1
+ownpal = 1
+
+[State -2, gauge2,2]
+type = explod
+triggerall = TeamSide = 2
+trigger1 = NumExplod(6) = 0
+anim = 7010
+ontop = 1
+id = 6
+supermove = 0
+sprpriority = 6
+facing = 1
+postype = right
+pos = -9,212
+bindtime = -1
+pausemovetime = 9999
+ignorehitpause = 1
+ownpal = 1
+
+[State -2, gauge2,2]
+type = ModifyExplod
+trigger1 = NumExplod(5) = 1
+trigger1 = var(12) <= 1000
+id = 6
+scale = 1,0+var(12)*0.001
+
+
+
+[state system];虹格独自システム用ヘルパー
+type = helper
+trigger1 = NumHelper(100000) = 0
+trigger1 = NumPartner = 0
+trigger1 = enemy,NumPartner = 0
+name = "systemhelper"
+id = 100000
+pos = 0,0
+postype = p1
+stateno = 100000
+helpertype = normal
+ownpal = 1
+keyctrl = 0
+
+
+[State 9500, 1]
+type = null;Helper
+trigger1 = var(12) > 300
+trigger1 = numhelper(7000) = 0
+name = "o"
+ID = 7000
+pos = 0, 0
+postype = p1
+stateno = 7000
+ownpal = 1
+supermovetime = 99999
+pausemovetime = 99999
+
+[State -3, CounterHit]
+type = varadd
+trigger1 = movetype != A
+trigger1 = movetype != H
+trigger1 = ctrl
+trigger1 = var(12) < 1000
+trigger1 = roundstate = 2
+var(12) = 3
+
+[State -3, CounterHit]
+type = varadd
+trigger1 = movetype = A
+trigger1 = var(12) < 1000
+trigger1 = roundstate = 2
+var(12) = 1
+
+[State -3, CounterHit]
+type = varadd
+trigger1 = movetype = A
+trigger1 = stateno = [0,700]
+trigger1 = var(12) < 1000
+trigger1 = roundstate = 2
+var(12) = 1
+
+[State -3, CounterHit]
+type = varset
+trigger1 = p2bodydist X >= -10
+trigger1 = p2bodydist X < 20
+var(11) = 0
+
+[State -3, CounterHit]
+type = varset
+trigger1 = p2bodydist X >= 20
+trigger1 = p2bodydist X < 70
+var(11) = 1
+[State -3, CounterHit]
+type = varset
+trigger1 = p2bodydist X >= 70
+var(11) = 2
+
+;---------------------------------------------------------------------------------
+[Statedef -3];常時監視ステート(p2statenoなどで相手に行動を制御された時は実行しない)
+;---------------------------------------------------------------------------------
+[State -3, 音を鳴らす]
+type = PlaySnd
+triggerall = Time = 1
+trigger1 = stateno = 52 || stateno = 106
+value = 40, 0
+
+[State -3, CounterHit]
+type = varset
+trigger1 = stateno = [1000,1099]
+trigger2 = stateno = 3000
+trigger3 = stateno = 3100
+trigger4 = stateno = 2000
+var(5) = 1

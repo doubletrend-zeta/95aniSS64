@@ -1,0 +1,1197 @@
+;-----------------------------------------------------------------------------
+;fatigue
+[statedef 15000]
+ctrl = 0
+anim = 15000
+velset = 0,0
+
+[State fatigue top]
+type = explod
+triggerall = numexplod(8904) = 0
+trigger1 = teamside = 1
+trigger1 = stateno = 15000
+anim = 8904
+ID = 8904
+pos = (screenwidth/2.9),screenheight - 20
+scale = 0.5,0.5
+sprpriority = 8
+postype = left
+removetime = -1
+bindtime = -1
+Pausemovetime=-1
+ownpal = 1
+
+[State fatigue top]
+type = explod
+triggerall = numexplod(8904) = 0
+trigger1 = teamside = 2
+trigger1 = stateno = 15000
+anim = 8904
+ID = 8904
+pos = (screenwidth/-2.9),screenheight - 20
+scale = 0.5,0.5
+sprpriority = 8
+postype = right
+removetime = -1
+bindtime = -1
+Pausemovetime=-1
+ownpal = 1
+
+[state fatigue top]
+type = removeexplod
+trigger1 = var(55) > 0
+ID = 8904
+
+[State fatigue bottom]
+type = explod
+triggerall = numexplod(8905) = 0
+trigger1 = teamside = 1
+trigger1 = stateno = 15000
+anim = 8905
+ID = 8905
+pos = (screenwidth/2.9),screenheight - 13
+scale = 0.5,0.5
+sprpriority = 8
+postype = left
+removetime = -1
+bindtime = -1
+Pausemovetime=-1
+ownpal = 1
+
+[State fatigue bottom]
+type = explod
+triggerall = numexplod(8905) = 0
+trigger1 = teamside = 2
+trigger1 = stateno = 15000
+anim = 8905
+ID = 8905
+pos = (screenwidth/-2.9),screenheight - 13
+scale = 0.5,0.5
+sprpriority = 8
+postype = right
+removetime = -1
+bindtime = -1
+Pausemovetime=-1
+ownpal = 1
+
+[state fatigue bottom]
+type = removeexplod
+trigger1 = var(55) > 0
+ID = 8905
+
+[state changestate]
+type = ChangeState
+trigger1 = var(55) > 0
+value = 12
+ctrl = 1
+;-----------------------------------------------------------------------------
+;rage explosion
+[statedef 15001]
+ctrl = 0
+anim = 15001
+velset = 0,0
+
+[State 9505, 4]
+type = Explod
+trigger1 = animelem=3
+anim = 8919
+ID = 8919
+pos = 160,240
+postype =left
+scale =.75,.75
+removetime = -2
+bindtime = -1
+supermovetime = 36
+pausemovetime = 36
+ownpal = 1
+ontop = 1
+
+[State 3000, Super A]
+type = SuperPause
+trigger1 = animelem=3
+movetime = 0
+anim=-1
+sound = s15001, 0
+time = 36
+darken =1
+
+[state changestate]
+type = ChangeState
+trigger1 = animtime = 0
+value = 0
+ctrl = 1
+;-----------------------------------------------------------------------------
+;Rage meter
+[statedef 90000000]
+ctrl = 0
+anim = 1
+
+[state rage meter]
+type = explod
+triggerall = numexplod(8910) = 0
+trigger1 = teamside = 1
+trigger1 = parent,var(57) < 172
+anim = 8910
+ID = 8910
+postype = left
+pos = (screenwidth/15),(screenheight - 175)
+scale = .79,.79
+sprpriority = 0
+removetime = -1
+bindtime = -1
+Pausemovetime=-1
+ownpal = 1
+ontop = 0
+
+[state rage meter]
+type = explod
+triggerall = numexplod(8910) = 0
+trigger1 = teamside = 2
+trigger1 = parent,var(57) < 172
+anim = 8910
+ID = 8910
+postype = right
+pos = (screenwidth/-15),(screenheight - 175)
+scale = .79,.79
+sprpriority = 0
+removetime = -1
+bindtime = -1
+Pausemovetime=-1
+ownpal = 1
+ontop = 0
+
+[state rage]
+type = removeexplod
+trigger1 = parent,var(57) = 172
+trigger2 = parent,var(53) = 1
+ID = 8910
+
+[state rage meter]
+type = explod
+triggerall = numexplod(8911) = 0
+trigger1 = teamside = 1
+trigger1 = parent,var(57) = 172
+anim = 8911
+ID = 8911
+postype = left
+pos = (screenwidth/15),(screenheight - 175)
+scale = .79,.79
+sprpriority = 0
+removetime = -1
+bindtime = -1
+Pausemovetime=-1
+ownpal = 0
+ontop = 0
+
+[state rage meter]
+type = explod
+triggerall = numexplod(8911) = 0
+trigger1 = teamside = 2
+trigger1 = parent,var(57) = 172
+anim = 8911
+ID = 8911
+postype = right
+pos = (screenwidth/-15),(screenheight - 175)
+scale = .79,.79
+sprpriority = 0
+removetime = -1
+bindtime = -1
+Pausemovetime=-1
+ownpal = 0
+ontop = 0
+
+[state rage]
+type = removeexplod
+trigger1 = parent,var(57) < 172
+ID = 8911
+
+[state rage meter]
+type = explod
+triggerall = numexplod(8915) = 0
+triggerall = numexplod(8918) = 0
+trigger1 = teamside = 1
+trigger1 = parent,var(54) > 0
+anim = 8915
+ID = 8915
+postype = left
+pos = (screenwidth/2.49),(screenheight - 183)
+scale = .6,.6
+sprpriority = 0
+removetime = -1
+bindtime = -1
+Pausemovetime=-1
+ownpal = 1
+
+[state rage meter]
+type = explod
+triggerall = numexplod(8915) = 0
+triggerall = numexplod(8918) = 0
+trigger1 = teamside = 2
+trigger1 = parent,var(54) > 0
+anim = 8965
+ID = 8915
+postype = right
+pos = (screenwidth/-2.49),(screenheight - 183)
+scale = .6,.6
+sprpriority = 0
+removetime = -1
+bindtime = -1
+Pausemovetime=-1
+ownpal = 1
+
+[state rage meter fill]
+type = explod
+triggerall = numexplod(8916) = 0
+triggerall = numexplod(8918) = 0
+trigger1 = teamside = 1
+trigger1 = parent,var(54) > 0
+anim = 8916
+ID = 8916
+postype = left
+pos = (screenwidth/2.51),(screenheight - 181.5)
+scale = .6,.55
+sprpriority = 1
+removetime = -1
+bindtime = -1
+Pausemovetime=-1
+ownpal = 1
+
+[state rage meter fill]
+type = explod
+triggerall = numexplod(8916) = 0
+triggerall = numexplod(8918) = 0
+trigger1 = teamside = 2
+trigger1 = parent,var(54) > 0
+anim = 8966
+ID = 8916
+postype = right
+pos = (screenwidth/-2.51),(screenheight - 181.5)
+scale = .6,.55
+sprpriority = 1
+removetime = -1
+bindtime = -1
+Pausemovetime=-1
+ownpal = 1
+
+[state rage meter fill]
+type = modifyExplod
+triggerall = numexplod(8916) = 1
+trigger1 = parent,var(54) > 0
+trigger1 = 1
+ID = 8916
+scale = (.6*parent,var(54)/571),0.55
+IgnoreHitPause = 1
+Persistent = 1
+
+[state rage]
+type = removeexplod
+trigger1 = parent,var(54) = 0
+trigger1 = parent,var(53) = 1
+ID = 8915
+
+[state rage]
+type = removeexplod
+trigger1 = parent,var(54) = 0
+trigger1 = parent,var(53) = 1
+ID = 8916
+
+[state rage explosion]
+type = explod
+triggerall = numexplod(8918) = 0
+trigger1 = teamside = 1
+trigger1 = parent,stateno = 15001
+anim = 8909
+ID = 8918
+postype = left
+pos = (screenwidth/15),(screenheight - 175)
+scale = .79,.79
+sprpriority = 0
+removetime = -1
+bindtime = -1
+supermovetime=99
+ownpal = 1
+
+[state rage explosion]
+type = explod
+triggerall = numexplod(8918) = 0
+trigger1 = teamside = 2
+trigger1 = parent,stateno = 15001
+anim = 8909
+ID = 8918
+postype = right
+pos = (screenwidth/-15),(screenheight - 175)
+scale = .79,.79
+sprpriority = 0
+removetime = -1
+bindtime = -1
+supermovetime=99
+ownpal = 1
+
+[state rage explosion]
+type = removeexplod
+triggerall = numexplod(8918) = 1
+trigger1 = parent,stateno != 15001
+ID = 8918
+
+[state rage meter burnt]
+type = explod
+triggerall = numexplod(8917) = 0
+triggerall = numexplod(8918) = 0
+trigger1 = teamside = 1
+trigger1 = parent,var(53) = 1
+anim = 8917
+ID = 8917
+postype = left
+pos = (screenwidth/15),(screenheight - 175)
+scale = .79,.79
+sprpriority = 0
+removetime = -1
+bindtime = -1
+Pausemovetime=-1
+ownpal = 1
+ontop = 1
+
+[state rage meter burnt]
+type = explod
+triggerall = numexplod(8917) = 0
+triggerall = numexplod(8918) = 0
+trigger1 = teamside = 2
+trigger1 = parent,var(53) = 1
+anim = 8917
+ID = 8917
+postype = right
+pos = (screenwidth/-15),(screenheight - 175)
+scale = .79,.79
+sprpriority = 0
+removetime = -1
+bindtime = -1
+Pausemovetime=-1
+ownpal = 1
+ontop = 1
+
+;-----------------------------------------------------------------------------
+[Statedef -2]
+;-----------------------------------------------------------------------------
+[State -2 vars]
+type = displayToClipboard
+trigger1 = 1
+text = "Stamina bar 1=%d, Stamina bar 2=%d, rage=%d, rage timer=%d, regen=%d\n"
+params = var(55),var(56),var(57),var(58),var(59)
+
+[State -2 vars]
+type = appendToClipboard
+trigger1 = 1
+text = "ex 1=%d, rage off? =%d, Slash/Bust(0/1) =%d, current life is =%d"
+params = var(54), var(53), var(52), var(51)
+;-----------------------------------------------------------------------------
+;Variable setup
+[state -2 set up Slash]
+type = varset
+trigger1 = palno = 1
+trigger2 = palno = 3
+v = 52
+value = 0
+
+[state -2 set up Bust]
+type = varset
+trigger1 = palno = 2
+trigger2 = palno = 4
+v = 52
+value = 1
+
+[state -2 check current life]
+type = varset
+trigger1 = 1
+v = 51
+value = life
+
+[state -2 set up stamina 1]
+type = varset
+trigger1 = roundstate < 2
+v = 55
+value = 47
+
+[state -2 cap stamina 1]
+type = varset
+trigger1 = var(55) >= 47
+v = 55
+value = 47
+
+[state -2 regen stamina 1]
+type = varadd
+triggerall = roundstate = 2
+triggerall = var(55) < 47
+triggerall = var(56) = 65
+trigger1 = (GameTime%60) = 0
+v = 55
+value = var(59)
+persistent = 1
+ignorehitpause = 1
+
+[State -2 prevent var from going below zero stamina 1]
+type = varset
+trigger1 = var(55) < 0
+v = 55
+value = 0
+ignorehitpause = 1
+persistent = 1
+
+[state -2 set up stamina 2]
+type = varset
+trigger1 = roundstate < 2
+v = 56
+value = 65
+
+[state -2 cap stamina 2]
+type = varset
+trigger1 = var(56) >= 65
+v = 56
+value = 65
+
+[state -2 set up stamina 2]
+type = varset
+trigger1 = var(55) < 0
+v = 56
+value = 64
+
+[state -2 regen stamina 2]
+type = varadd
+triggerall = roundstate = 2
+triggerall = var(55) = 0
+triggerall = var(56) < 65
+trigger1 = (GameTime%60) = 0
+v = 56
+value = var(59)
+persistent = 1
+ignorehitpause = 1
+
+[State -2 prevent var from going below zero stamina 2]
+type = varset
+trigger1 = var(56) <= 0
+v = 56
+value = 0
+ignorehitpause = 1
+persistent = 1
+
+[state -2 set up rage]
+type = varset
+trigger1 = roundno = 1
+trigger1 = roundstate < 2
+v = 57
+value = 86
+
+[state -2 cap rage meter]
+type = varset
+trigger1 = var(57) >= 172
+v = 57
+value = 172
+
+[state -2 set rage timer]
+type = varset
+trigger1 = var(57) < 172
+v = 58
+value = 0
+
+[State -2 prevent var from going below zero]
+type = varset
+trigger1 = var(57) <= 0
+v = 57
+value = 0
+ignorehitpause = 1
+persistent = 1
+
+[state -2 set up rageex]
+type = varset
+trigger1 = roundno = 1
+trigger1 = roundstate < 2
+v = 54
+value = 0
+
+[state -2 turn on rage]
+type = varset
+trigger1 = roundno = 1
+trigger1 = roundstate < 2
+v = 53
+value = 0
+
+[state -2 kill rageex if still around in next round]
+type = varset
+trigger1 = roundstate = 0
+trigger1 = var(53) = 1
+v = 54
+value = 0
+
+;-----------------------------------------------------------------------------
+;Variable effects
+[state -2 add to rage]
+type = varadd
+trigger1 = movetype = H
+trigger1 = var(57) != 172
+trigger1 = var(53) = 0
+v = 57
+value = floor(Gethitvar(damage)/4.2222222)
+
+[state -2 drain rage]
+type = varset
+trigger1 = var(58) = 25
+v = 57
+value = 0
+ignorehitpause = 1
+persistent = 1
+
+[state -2 rage timer]
+type = varadd
+triggerall = var(57) = 172
+triggerall = var(58) < 25
+trigger1 = (GameTime%60) = 1
+v = 58
+value = 1
+persistent = 1
+ignorehitpause = 1
+
+[State -2 rage active slash]
+type = remapPal
+triggerall = var(52) = 0
+triggerall = var(54) = 0
+trigger1 = var(57) = 172
+source = 1,palno
+dest = 1,6
+
+[State -2 explode active slash]
+type = remapPal
+triggerall = var(52) = 0
+triggerall = var(54) > 0
+trigger1 = var(57) < 0
+source = 1,palno
+dest = 1,6
+
+[State -2 rage non active slash]
+type = RemapPal
+triggerall = var(52) = 0
+triggerall = var(54) = 0
+trigger1 = var(57) < 172
+source = 1,palno
+dest = 1,1
+
+[State -2 explode non active slash]
+type = remapPal
+triggerall = var(52) = 0
+triggerall = var(54) = 0
+trigger1 = var(57) < 0
+source = 1,palno
+dest = 1,1
+
+[State -2 rage active bust]
+type = remapPal
+triggerall = var(52) = 1
+triggerall = var(54) = 0
+trigger1 = var(57) = 172
+source = 1,palno
+dest = 1,7
+
+[State -2 explode active bust]
+type = remapPal
+triggerall = var(52) = 1
+triggerall = var(54) > 0
+trigger1 = var(57) < 0
+source = 1,palno
+dest = 1,7
+
+[State -2 rage non active bust]
+type = RemapPal
+triggerall = var(52) = 1
+triggerall = var(54) = 0
+trigger1 = var(57) < 172
+source = 1,palno
+dest = 1,2
+
+[State -2 explode non active bust]
+type = remapPal
+triggerall = var(52) = 1
+triggerall = var(54) = 0
+trigger1 = var(57) < 0
+source = 1,palno
+dest = 1,2
+
+[state -2 damage increase from rage]
+type = attackmulset
+trigger1 = var(58) > 0
+trigger2 = var(54) > 0
+value = 1.3
+
+[state -2 return to standard damage]
+type = attackmulset
+trigger1 = var(58) = 0
+trigger2 = var(54) = 0
+value = 1
+
+[state -2 turn off rage]
+type = varset
+trigger1 = stateno = 15001
+v = 53
+value = 1
+
+[state -2 set up explosion]
+type = varset
+trigger1 = stateno = 15001
+v = 54
+value = 330
+
+[state -2 remove rage explosion]
+type = varset
+trigger1 = stateno = 15001
+v = 57
+value = 0
+
+[state -2 remove rage timer explosion]
+type = varset
+trigger1 = stateno = 15001
+v = 58
+value = 0
+
+[state -2 explosion drain]
+type = varadd
+triggerall = var(54) > 0
+trigger1 = (GameTime%60) = 1
+v = 54
+value = -5
+persistent = 1
+ignorehitpause = 1
+;---------------------------------------------------------
+;rage bar
+[state -2 rage bar outer]
+type = explod
+triggerall = numexplod(8912) = 0
+trigger1 = teamside = 1
+trigger1 = var(53) = 0
+anim = 8912
+ID = 8912
+postype = left
+pos = screenwidth/2.3,(screenheight - 180)
+scale = .63,.63
+sprpriority = 0
+removetime = -1
+bindtime = -1
+Pausemovetime=-1
+ownpal = 1
+
+[state -2 rage bar outer]
+type = explod
+triggerall = numexplod(8912) = 0
+trigger1 = teamside = 2
+trigger1 = var(53) = 0
+anim = 8962
+ID = 8912
+postype = right
+pos = screenwidth/-2.3,(screenheight - 180)
+scale = .63,.63
+sprpriority = 0
+removetime = -1
+bindtime = -1
+Pausemovetime=-1
+ownpal = 1
+
+[state -2 rage bar inner]
+type = explod
+triggerall = numexplod(8913) = 0
+trigger1 = teamside = 1
+trigger1 = var(57) < 172
+trigger1 = var(53) = 0
+anim = 8913
+ID = 8913
+postype = left
+pos = screenwidth/2.3,(screenheight - 178.5)
+scale = .63,.63
+sprpriority = 0
+removetime = -1
+bindtime = -1
+Pausemovetime=-1
+ownpal = 1
+
+[state -2 rage bar inner]
+type = explod
+triggerall = numexplod(8913) = 0
+trigger1 = teamside = 2
+trigger1 = var(57) < 172
+trigger1 = var(53) = 0
+anim = 8963
+ID = 8913
+postype = right
+pos = screenwidth/-2.3,(screenheight - 178.5)
+scale = .63,.63
+sprpriority = 0
+removetime = -1
+bindtime = -1
+Pausemovetime=-1
+ownpal = 1
+
+[state -2 rage bar inner]
+type = modifyExplod
+Triggerall = (var(57) < 172)
+trigger1 = 1
+ID = 8913
+scale = (.63*var(57)/172),.63
+IgnoreHitPause = 1
+Persistent = 1
+
+[state remove rage bar]
+type = removeexplod
+triggerall = numexplod(8913) = 1
+trigger1 = var(57) = 172
+ID = 8913
+IgnoreHitPause = 1
+
+[state -2 rage bar inner]
+type = explod
+triggerall = numexplod(8914) = 0
+trigger1 = teamside = 1
+trigger1 = var(57) = 172
+anim = 8913
+ID = 8914
+postype = left
+pos = screenwidth/2.3,(screenheight - 178.5)
+scale = .638,.63
+sprpriority = 0
+removetime = -1
+bindtime = -1
+Pausemovetime=-1
+ownpal = 1
+
+[state -2 rage bar inner]
+type = explod
+triggerall = numexplod(8914) = 0
+trigger1 = teamside = 2
+trigger1 = var(57) = 172
+anim = 8963
+ID = 8914
+postype = right
+pos = screenwidth/-2.32,(screenheight - 178.5)
+scale = .63,.63
+sprpriority = 0
+removetime = -1
+bindtime = -1
+Pausemovetime=-1
+ownpal = 1
+
+[state remove rage bar]
+type = removeexplod
+triggerall = numexplod(8914) = 1
+trigger1 = var(57) < 172
+ID = 8914
+IgnoreHitPause = 1
+
+[state kill bar when explode]
+type = removeexplod
+triggerall = numexplod(8912) = 1
+trigger1 = var(53) = 1
+ID = 8912
+IgnoreHitPause = 1
+
+[state kill bar when explode]
+type = removeexplod
+triggerall = numexplod(8913) = 1
+trigger1 = var(53) = 1
+ID = 8913
+IgnoreHitPause = 1
+
+[state kill bar when explode]
+type = removeexplod
+triggerall = numexplod(8914) = 1
+trigger1 = var(53) = 1
+ID = 8914
+IgnoreHitPause = 1
+
+[state -2 rage bar outer burnt]
+type = explod
+triggerall = numexplod(8918) = 0
+trigger1 = var(53) = 1
+trigger1 = var(54) = 0
+trigger1 = teamside = 1
+anim = 8918
+ID = 8918
+postype = left
+pos = (screenwidth/15),(screenheight - 175)
+scale = .63,.63
+sprpriority = 0
+removetime = -1
+bindtime = -1
+Pausemovetime=-1
+ownpal = 1
+
+[state -2 rage bar outer burnt]
+type = explod
+triggerall = numexplod(8918) = 0
+trigger1 = var(53) = 1
+trigger1 = var(54) = 0
+trigger1 = teamside = 2
+anim = 8968
+ID = 8918
+postype = right
+pos = (screenwidth/-15),(screenheight - 175)
+scale = .63,.63
+sprpriority = 0
+removetime = -1
+bindtime = -1
+Pausemovetime=-1
+ownpal = 1
+;-----------------------------------------------------------------------------
+;Formulas
+[state -2 stamina regen formula zero]
+type = varrandom
+trigger1 = 1
+v = 59
+range = 2,3
+
+;-----------------------------------------------------------------------------
+;stamina drains
+[state -2 stamina drain attacks]
+type = varadd
+triggerall = movetype = A
+trigger1 = time = 1
+trigger1 = var(55) >= 3
+v = 55
+value = -3
+
+[state -2 stamina drain attacks]
+type = varadd
+triggerall = movetype = A
+trigger1 = time = 1
+trigger1 = var(56) >= 3
+trigger1 = var(55) = 0
+v = 56
+value = -3
+
+[state -2 stamina drain backdash]
+type = varadd
+triggerall = stateno = 105
+trigger1 = time = 1
+trigger1 = var(55) >= 3
+v = 55
+value = -9
+
+[state -2 stamina drain backdash]
+type = varadd
+triggerall = stateno = 105
+trigger1 = time = 1
+trigger1 = var(56) >= 3
+trigger1 = var(55) = 0
+v = 56
+value = -9
+
+[state -2 stamina drain jump]
+type = varadd
+triggerall = anim = 43
+trigger1 = time = 1
+trigger1 = var(55) >= 3
+v = 55
+value = -26
+
+[state -2 stamina drain jump]
+type = varadd
+triggerall = anim = 43
+trigger1 = time = 1
+trigger1 = var(56) >= 3
+trigger1 = var(55) = 0
+v = 56
+value = -26
+
+[state -2 fatigue]
+type = changestate
+triggerall = var(56) = 0
+trigger1 = statetype != A
+trigger1 = statetype != L
+value = 15000
+
+[state -2 hit in fatigue]
+type = varset
+triggerall = numexplod(8904) = 1
+triggerall = numexplod(8905) = 1
+triggerall = var(56) < 65
+trigger1 = movetype = H
+v = 56
+value = 65
+IgnoreHitPause = 1
+
+[state -2 hit in fatigue]
+type = varset
+triggerall = numexplod(8904) = 1
+triggerall = numexplod(8905) = 1
+triggerall = var(56) < 65
+trigger1 = movetype = H
+v = 55
+value = 1
+IgnoreHitPause = 1
+
+;-----------------------------------------------------------------------------
+;Bar
+[State bar outer]
+type = explod
+triggerall = numexplod(8901) = 0
+trigger1 = teamside = 1
+anim = 8901
+ID = 8901
+pos = screenwidth/2.18,(screenheight - 24)
+scale = 0.5,0.5
+sprpriority = 9
+postype = left
+removetime = -1
+supermove = 1
+bindtime = -1
+Pausemovetime=-1
+ownpal = 1
+ontop=1
+
+[State bar outer]
+type = explod
+triggerall = numexplod(8901) = 0
+trigger1 = teamside = 2
+anim = 8951
+ID = 8901
+pos = screenwidth/-2.18,(screenheight - 24)
+scale = 0.5,0.5
+sprpriority = 9
+postype = right
+removetime = -1
+supermove = 1
+bindtime = -1
+Pausemovetime=-1
+ownpal = 1
+ontop=1
+
+[State first bar]
+type = explod
+triggerall = numexplod(8900) = 0
+trigger1 = teamside = 1
+anim = 8900
+ID = 8900
+pos = screenwidth/4.67,(screenheight - 21.5)
+scale = 0.5,0.5
+sprpriority = 8
+postype = left
+removetime = -1
+bindtime = -1
+Pausemovetime=-1
+ownpal = 1
+
+[State first bar]
+type = explod
+triggerall = numexplod(8900) = 0
+trigger1 = teamside = 2
+anim = 8950
+ID = 8900
+pos = screenwidth/-4.68,(screenheight - 21.5)
+scale = 0.5,0.5
+sprpriority = 8
+postype = right
+removetime = -1
+bindtime = -1
+Pausemovetime=-1
+ownpal = 1
+
+[state 19000]
+type = modifyExplod
+Triggerall = (var(55) < 47)
+trigger1 = 1
+ID = 8900
+scale = (.5*var(55)/47),0.5
+IgnoreHitPause = 1
+Persistent = 1
+
+[state 19000]
+type = modifyExplod
+Triggerall = (var(55) = 47)
+trigger1 = 1
+ID = 8900
+scale = 0.5,0.5
+IgnoreHitPause = 1
+Persistent = 1
+
+[State yellow]
+type = explod
+triggerall = numexplod(8902) = 0
+trigger1 = teamside = 1
+trigger1 = var(55) > 0
+Trigger1 = var(56) = 65
+anim = 8902
+ID = 8902
+pos = screenwidth/2.22,(screenheight - 21.5)
+scale = 0.5,0.5
+sprpriority = 8
+postype = left
+removetime = -1
+bindtime = -1
+Pausemovetime=-1
+ownpal = 1
+IgnoreHitPause = 1
+Persistent = 1
+
+[State yellow]
+type = explod
+triggerall = numexplod(8902) = 0
+trigger1 = teamside = 2
+trigger1 = var(55) > 0
+Trigger1 = var(56) = 65
+anim = 8952
+ID = 8902
+pos = screenwidth/-2.22,(screenheight - 21.5)
+scale = 0.5,0.5
+sprpriority = 8
+postype = right
+removetime = -1
+bindtime = -1
+Pausemovetime=-1
+ownpal = 1
+IgnoreHitPause = 1
+Persistent = 1
+
+[state yellow]
+type = removeexplod
+trigger1 = var(55) = 0
+ID = 8902
+IgnoreHitPause = 1
+
+[State red]
+type = explod
+triggerall = numexplod(8903) = 0
+trigger1 = teamside = 1
+trigger1 = var(56) <= 65
+anim = 8903
+ID = 8903
+pos = screenwidth/2.22,(screenheight - 21.5)
+scale = 0.5,0.5
+sprpriority = 7
+postype = left
+removetime = -1
+bindtime = -1
+Pausemovetime=-1
+ownpal = 1
+IgnoreHitPause = 1
+
+[State red]
+type = explod
+triggerall = numexplod(8903) = 0
+trigger1 = teamside = 2
+trigger1 = var(56) <= 65
+anim = 8953
+ID = 8903
+pos = screenwidth/-2.22,(screenheight - 21.5)
+scale = 0.5,0.5
+sprpriority = 7
+postype = right
+removetime = -1
+bindtime = -1
+Pausemovetime=-1
+ownpal = 1
+IgnoreHitPause = 1
+
+[state red]
+type = modifyExplod
+triggerall = numexplod(8903) = 1
+Triggerall = var(56) < 65
+trigger1 = 1
+ID = 8903
+scale = (.5*var(56)/64),0.5
+IgnoreHitPause = 1
+Persistent = 1
+
+[state red]
+type = modifyExplod
+triggerall = numexplod(8903) = 1
+Triggerall = var(56) = 65
+trigger1 = 1
+ID = 8903
+scale = 0.5,0.5
+IgnoreHitPause = 1
+Persistent = 1
+
+[state red]
+type = removeexplod
+triggerall = numexplod(8903) = 1
+trigger1 = var(56) <= 0
+ID = 8903
+IgnoreHitPause = 1
+
+[state remove fatigue when hit top]
+type = removeexplod
+trigger1 = var(56) = 65
+ID = 8904
+IgnoreHitPause = 1
+
+[state remove fatigue when hit bottom]
+type = removeexplod
+trigger1 = var(56) = 65
+ID = 8905
+IgnoreHitPause = 1
+
+[state remove fatigue when hit red]
+type = removeexplod
+triggerall = numexplod(8902) = 1
+triggerall = numexplod(8903) = 1
+triggerall = numexplod(8904) = 0
+triggerall = numexplod(8905) = 0
+trigger1 = movetype = H
+trigger1 = var(56) = 65
+trigger1 = var(55) > 0
+ID = 8903
+IgnoreHitPause = 1
+
+[State add yellow when hit in fatigue]
+type = explod
+triggerall = numexplod(8902) = 0
+triggerall = numexplod(8903) = 1
+triggerall = numexplod(8904) = 0
+triggerall = numexplod(8905) = 0
+triggerall = teamside = 1
+trigger1 = var(55) > 0
+trigger1 = movetype = H
+trigger1 = var(56) = 65
+anim = 8902
+ID = 8902
+pos = screenwidth/2.22,(screenheight - 21.5)
+scale = 0.5,0.5
+sprpriority = 8
+postype = left
+removetime = -1
+bindtime = -1
+Pausemovetime=-1
+ownpal = 1
+IgnoreHitPause = 1
+Persistent = 1
+
+[State add yellow when hit in fatigue]
+type = explod
+triggerall = numexplod(8902) = 0
+triggerall = numexplod(8903) = 1
+triggerall = numexplod(8904) = 0
+triggerall = numexplod(8905) = 0
+triggerall = teamside = 2
+trigger1 = var(55) > 0
+trigger1 = movetype = H
+trigger1 = var(56) = 65
+anim = 8902
+ID = 8902
+pos = screenwidth/-2.22,(screenheight - 21.5)
+scale = 0.5,0.5
+sprpriority = 8
+postype = right
+removetime = -1
+bindtime = -1
+Pausemovetime=-1
+ownpal = 1
+IgnoreHitPause = 1
+Persistent = 1
+
+;-----------------------------------------------------------------------------
+;Rage meter helper
+[State rage meter helper]
+Type = Helper
+Triggerall = NumHelper(90000000) = 0 
+Trigger1 = 1
+OwnPal = 1
+PosType = P1
+Pos = 0, 0
+ID = 90000000
+StateNo = 90000000
+PauseMoveTime = 999999
+SuperMoveTime = 999999
+Name = "Rage Bar"

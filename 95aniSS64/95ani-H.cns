@@ -1,0 +1,1008 @@
+; スパ殺技
+
+;---------------------------------------------------------------------------
+[Statedef 2000]
+type     = S
+movetype = A
+physics  = S
+juggle   = 9
+poweradd = -1000
+velset   = 0,0
+anim     = 2000
+ctrl     = 0
+sprpriority = 2
+
+
+[State 2000]
+type = Pause
+trigger1 = animelem = 1
+movetime = 10
+time = 10
+
+[State 2000]
+type = Palfx
+trigger1 = animelem = 1
+add = 255,255,255
+time = 3
+
+[State 2000]
+type = Playsnd
+trigger1 = animelem = 1
+value = 2000,1
+
+[State 1000, キャラ幅]
+type = Width
+trigger1 = AnimElemTime(3) >= 0 && AnimElemTime(4) < 0
+value = 10,0
+
+[State 1000, 風切り]
+type = PlaySnd
+trigger1 = AnimElem = 2
+value = 100, 0
+
+[State 1000, 風切り]
+type = PlaySnd
+trigger1 = AnimElem = 3
+value = 2000, 0
+
+[State 1000, 風切り]
+type = PlaySnd
+trigger1 = AnimElem = 3
+value = 0, 1
+
+[State 1000, 風切り]
+type = PlaySnd
+trigger1 = AnimElem = 8
+value = 1000, 10
+volume = 160
+
+[State 1000, 残心]
+type = Explod
+trigger1 = AnimElem = 4
+anim = 1001
+sprpriority = 3
+removeongethit = 1
+
+
+
+[State 1000, ぼやぼやしてると]
+type = HitDef
+trigger1   = animelem = 4
+attr       = S, SA
+animtype   = diagup
+damage     = var(12)*0.06+100
+priority   = 4
+guardflag  = M
+getpower = 0
+pausetime  = 12,12
+guard.pausetime = 12,12
+sparkno    = 12
+sparkxy    = -10,-50
+hitsound   = s1,23
+guardsound = 6,0
+ground.type      = High
+ground.slidetime = 33
+ground.hittime   = 33
+ground.velocity  = -1,-10
+air.velocity     = -1,-10
+fall = 1
+yaccel = 0.6
+fall.recover = 0
+envshake.time = 15
+envshake.ampl = 3
+envshake.freq = 160
+
+[State 1000, 残心]
+type = varset
+trigger1 = AnimElem = 4
+var(12) = 0
+
+[State 1000, 立ち戻り]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+
+
+
+;---------------------------------------------------------------------------
+[Statedef 3000]
+type     = S
+movetype = A
+physics  = S
+juggle   = 9
+velset   = 0,0
+anim     = 2100
+ctrl     = 0
+sprpriority = 2
+
+[State 1000, 風切り]
+type = varadd
+trigger1 = time = 0
+trigger1 = prevstateno = 210 || prevstateno = 410 || prevstateno = 215 || prevstateno = 1100 || prevstateno = 1150  || prevstateno = 420 || prevstateno = 1300 || prevstateno = 1351  || prevstateno = 2000 || prevstateno = 1402
+var(12) = -500
+
+[State 1000, 風切り]
+type = PlaySnd
+trigger1 = time = 0
+trigger1 = prevstateno = 210 || prevstateno = 410 || prevstateno = 215 || prevstateno = 1100 || prevstateno = 1150  || prevstateno = 420 || prevstateno = 1300 || prevstateno = 1351  || prevstateno = 2000 || prevstateno = 1402
+value = 1222, 0
+
+[State 1000, 風切り]
+type = palfx
+trigger1 = time = 0
+trigger1 = prevstateno = 210 || prevstateno = 410 || prevstateno = 215 || prevstateno = 1100 || prevstateno = 1150  || prevstateno = 420 || prevstateno = 1300 || prevstateno = 1351  || prevstateno = 2000 || prevstateno = 1402
+mul = 255,255,255
+add = 255,255,255
+time = 3
+
+[State 3610,残像]
+type = Afterimage
+trigger1 = AnimElem = 3
+trans = add1
+timegap = 1
+framegap = 2
+time = 50
+length = 15
+palcolor = 256
+palinvertall = 0
+palbright = 50,50,50
+palcontrast = 120,120,220
+palpostbright = 30,30,30
+paldd = 0,0,160
+palmul = 1,1,1
+
+[State 3610,残像]
+type = Afterimage
+trigger1 = AnimElemtime(3) = 0
+trans = add
+timegap = 1
+framegap = 2
+time = 3
+length = 10
+palcolor = 256
+palinvertall = 0
+palbright = 80,30,30
+palcontrast = 240,110,90
+palpostbright = 60,20,20
+paladd = 100,0,0
+PalMul = .9 , .6 , .6
+parsistent = 1
+
+
+[State 3610,残像]
+type = Afterimagetime
+trigger1 = AnimElemtime(3) >= 0
+trigger1 = AnimElemtime(13) <= 0
+time = 2
+
+[State 3000, Super A]
+type = SuperPause
+trigger1 = AnimElem = 3
+sound = 20,0
+poweradd = -1000
+pos = 30,-80
+
+[State 9500, 1]
+type = Helper
+trigger1 = AnimElem = 3
+name = "CutIn"
+ID = 3501
+pos = 0, 0
+postype = p1
+stateno = 9505
+ownpal = 1
+supermovetime = 40
+pausemovetime = 40
+
+[State 1000, キャラ幅]
+type = nothitby
+trigger1 = time = 0
+value = SCA
+time = 10
+
+[State 1000, 風切り]
+type = PlaySnd
+trigger1 = AnimElem = 5
+trigger2 = AnimElem = 8
+value = 0, 3
+
+[State 1000, 風切り]
+type = PlaySnd
+trigger1 = AnimElem = 5
+value = 2000, 1
+
+[State 1000, 風切り]
+type = PlaySnd
+trigger1 = AnimElem = 13
+value = 1000, 10
+volume = 160
+
+[State 1000, ぼやぼやしてると]
+type = HitDef
+trigger1   = animelem = 5
+attr       = S, HA
+animtype   = diagup
+damage     = var(12)*0.12+50,6
+priority   = 5
+guardflag  = M
+pausetime  = 3,3
+guard.pausetime = 12,12
+sparkno    = 12
+getpower = 0
+sparkxy    = -10,-60
+hitsound   = s1,23
+guardsound = 6,0
+ground.type      = High
+ground.slidetime = 33
+ground.hittime   = 33
+ground.velocity  = -0.1,-10
+air.velocity     = -0.1,-5
+fall = 1
+yaccel = 0.6
+fall.recover = 0
+envshake.time = 15
+envshake.ampl = 3
+envshake.freq = 160
+kill = 0
+
+[State 1000, ぼやぼやしてると]
+type = HitDef
+trigger1   = animelem = 8
+attr       = S, HA
+animtype   = diagup
+damage     = 50,6
+priority   = 5
+guardflag  = MA
+getpower = 0
+pausetime  = 12,12
+guard.pausetime = 12,12
+sparkno    = 12
+sparkxy    = -20,-77
+hitsound   = s1,23
+guardsound = 6,0
+ground.type      = High
+ground.slidetime = 33
+ground.hittime   = 33
+ground.velocity  = -3,-10
+air.velocity     = -3,-10
+fall = 1
+fall.recover = 0
+envshake.time = 15
+envshake.ampl = 3
+envshake.freq = 160
+kill = 0
+
+[State 1000, 残心]
+type = varset
+trigger1 = AnimElem = 5
+var(12) = 0
+
+[State 1000, 残心]
+type = changestate
+trigger1 = movehit
+trigger1 = hitcount = 2
+trigger1 = AnimElem = 9
+value = 3010
+ignorehitpause = 1
+
+[State 1000, 立ち戻り]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+
+
+;---------------------------------------------------------------------------
+[Statedef 3010]
+type     = S
+movetype = A
+physics  = S
+velset   = 0,0
+anim     = 2101
+ctrl     = 0
+sprpriority = 2
+
+[State 3610,残像]
+type = Afterimagetime
+trigger1 = AnimElemtime(1) >= 0
+trigger1 = AnimElemtime(5) <= 0
+time = 2
+
+[State スパコンを認識させる]
+type = HitDef
+trigger1 = time = 0
+attr = A, HA
+Hitflag = 
+poweradd= 0
+animtype  = Hard
+damage    = 0
+kill = 0
+hitflag = 
+pausetime = 0,0
+ground.type = High
+ground.slidetime = 0
+ground.hittime = 0
+ground.velocity = 0,0
+
+[State 1000, 残心]
+type = targetstate
+trigger1 = time = 0
+value = 3050
+ignorehitpause = 1
+
+[State 1000, 風切り]
+type = targetlifeadd
+trigger1 = AnimElemtime(5) = 0
+value = -180
+
+[State 3610,残像]
+type = envshake
+trigger1 = AnimElemtime(5) = 0
+time = 15
+ampl = 7
+freq = 180
+
+[State 1000, 風切り]
+type = PlaySnd
+trigger1 = AnimElem = 5
+value = 1, 24
+
+[State 1000, 風切り]
+type = PlaySnd
+trigger1 = AnimElem = 5
+value = 1000, 10
+volume = 200
+
+[State 1000, 風切り]
+type = PlaySnd
+trigger1 = AnimElem = 5
+value = 1000, 10
+volume = 200
+
+[State 1000, 風切り]
+type = PlaySnd
+trigger1 = AnimElem = 5
+value = 2000, 6
+
+[State 1000, 残心]
+type = Explod
+trigger1 = AnimElemtime(5) = 0
+anim = f2002
+postype = back
+removetime = 10
+pos = 100,-100
+sprpriority = -10
+scale = 99999,99999
+
+[State 1000, 残心]
+type = Explod
+trigger1 = AnimElem = 5
+anim = 2110
+pos = 0,-10
+facing = -1
+postype = p2
+sprpriority = 5
+
+[State 1000, 残心]
+type = Explod
+trigger1 = AnimElem = 5
+anim = 2111
+pos = 0,-10
+facing = -1
+postype = p2
+sprpriority = 5
+
+[State 1000, 残心]
+type = targetstate
+trigger1 = AnimElem = 5
+value = 3051
+
+[State 1016,Projectile]
+type = helper
+trigger1 = roundstate = 2
+trigger1 = AnimElemtime(5) = 2
+name = "slow"
+id = 23432
+pos = 0,0
+postype = p1
+stateno = 23431
+helpertype = normal
+ownpal = 1
+keyctrl = 0
+ignorehitpause = 1
+parsistent = 0
+pausemovetime = 9999999
+
+
+[State 1000, 立ち戻り]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+[Statedef 3050]
+type     = A
+movetype = H
+physics  = N
+velset   = 0,0
+ctrl     = 0
+sprpriority = 2
+
+[State 1000, 風切り]
+type = velset
+trigger1 = 1
+x = 0
+y = 0
+
+[State 1000, 風切り]
+type = changeanim2
+trigger1 = time = 0
+value = 2150
+
+[State 1000, 立ち戻り]
+type = selfState
+trigger1 = Time = 100
+value = 5050
+
+;---------------------------------------------------------------------------
+[Statedef 3051]
+type     = A
+movetype = H
+physics  = N
+velset   = -2,-8
+ctrl     = 0
+sprpriority = 2
+
+[State 1000, 立ち戻り]
+type = selfState
+trigger1 = Time = 0
+value = 5050
+
+
+;---------------------------------------------------------------------------
+[Statedef 3100]
+type     = S
+movetype = A
+physics  = S
+juggle   = 9
+velset   = 0,0
+anim     = 2500
+ctrl     = 0
+sprpriority = 2
+
+[State 1000, 風切り]
+type = varadd
+trigger1 = time = 0
+trigger1 = prevstateno = 210 || prevstateno = 410 || prevstateno = 215 || prevstateno = 1100 || prevstateno = 1150  || prevstateno = 420 || prevstateno = 1300 || prevstateno = 1351  || prevstateno = 2000 || prevstateno = 1402
+var(12) = -500
+
+[State 1000, 風切り]
+type = PlaySnd
+trigger1 = time = 0
+trigger1 = prevstateno = 210 || prevstateno = 410 || prevstateno = 215 || prevstateno = 1100 || prevstateno = 1150  || prevstateno = 420 || prevstateno = 1300 || prevstateno = 1351  || prevstateno = 2000 || prevstateno = 1402
+value = 1222, 0
+
+[State 1000, 風切り]
+type = palfx
+trigger1 = time = 0
+trigger1 = prevstateno = 210 || prevstateno = 410 || prevstateno = 215 || prevstateno = 1100 || prevstateno = 1150  || prevstateno = 420 || prevstateno = 1300 || prevstateno = 1351  || prevstateno = 2000 || prevstateno = 1402
+mul = 255,255,255
+add = 255,255,255
+time = 3
+
+[State 1000, キャラ幅]
+type = Width
+trigger1 = AnimElemTime(12) >= 0 && AnimElemTime(20) < 0
+value = 40,0
+
+[State 3610,残像]
+type = Afterimage
+trigger1 = AnimElemtime(1) = 0
+trans = add
+timegap = 1
+framegap = 2
+time = 3
+length = 15
+palcolor = 256
+palinvertall = 0
+palbright = 50,50,50
+palcontrast = 240,110,90
+palpostbright = 60,20,20
+paladd = 0,0,0
+PalMul = .8 , .8 , .9
+parsistent = 1
+
+[State 3610,残像]
+type = Afterimagetime
+trigger1 = AnimElemtime(1) >= 0
+trigger1 = AnimElemtime(19) <= 30
+time = 2
+ignorehitpause = 1
+
+[State 1000, キャラ幅]
+type = posadd
+trigger1 = animelemtime(12) = 0 
+x = 20
+
+[State 1000, キャラ幅]
+type = posadd
+trigger1 = animelemtime(22) = 0 
+x = 13
+
+[State 1000, キャラ幅]
+type = velset
+trigger1 = animelemtime(12) = 0 
+x = 6
+
+[State 1000, キャラ幅]
+type = gamemakeanim
+trigger1 = animelemtime(12) = 0 
+value = 200
+pos = -33,2
+
+[State 1000, キャラ幅]
+type = explod
+trigger1 = animelemtime(17) = 0 
+anim = f62
+pos = 50,2
+
+
+[State 9500, 1]
+type = Helper
+trigger1 = AnimElem = 3
+name = "CutIn"
+ID = 3501
+pos = 0, 0
+postype = p1
+stateno = 9505
+ownpal = 1
+supermovetime = 40
+pausemovetime = 40
+
+[State 3000, Super A]
+type = SuperPause
+trigger1 = AnimElem = 3
+sound = 20,0
+poweradd = -2000
+pos = 0,-60
+time = 50
+movetime = 50
+
+[State 1000, キャラ幅]
+type = nothitby
+trigger1 = animelemtime(18) < 0 
+value = SCA
+time = 1
+
+[State 1000, 風切り]
+type = PlaySnd
+trigger1 = AnimElem = 3
+value = 3000, 0
+
+[State 1000, 風切り]
+type = PlaySnd
+trigger1 = AnimElem = 8
+value = 2000, 1
+volume = -100
+
+[State 1000, 風切り]
+type = PlaySnd
+trigger1 = AnimElem = 12
+value = 3000, 2
+
+[State 1000, 風切り]
+type = PlaySnd
+trigger1 = AnimElem = 12
+value = 100, 0
+
+[State 1000, 風切り]
+type = PlaySnd
+trigger1 = AnimElem = 17
+value = 1100, 0
+
+[State 1000, 風切り]
+type = PlaySnd
+trigger1 = AnimElem = 17
+value = 6, 1
+
+[State 1000, 風切り]
+type = PlaySnd
+trigger1 = AnimElem = 17
+value = 2000, 5
+
+[State 1000, 風切り]
+type = envshake
+trigger1 = AnimElem = 17
+time = 20
+
+[State 1000, 風切り]
+type = PlaySnd
+trigger1 = AnimElem = 23
+value = 1000, 10
+volume = 200
+
+[State 1000, 悪いな！]
+type = HitDef
+trigger1   = animelem = 17
+attr       = S, HA
+animtype   = diagup
+damage     = var(12)*0.25+320,10
+priority   = 5
+guardflag  = M
+pausetime  = 20,20
+guard.pausetime = 20,20
+sparkno    = 12
+sparkxy    = -10,-60
+getpower = 0
+hitsound   = s3000,1
+guardsound = 6,0
+ground.type      = High
+ground.slidetime = 33
+ground.hittime   = 33
+ground.velocity  = -15,-8
+air.velocity     = -15,-8
+fall = 1
+yaccel = 0.6
+fall.recover = 0
+envshake.time = 40
+envshake.ampl = 6
+envshake.freq = 170
+
+[State 1000, 残心]
+type = varset
+trigger1 = AnimElem = 17
+var(12) = 0
+
+[State 1000, 残心]
+type = targetstate
+
+trigger1 = movehit = 1
+value = 3150
+ignorehitpause = 1
+
+[State 1000, 残心]
+type = playsnd
+trigger1 = AnimElem = 17
+trigger1 = movehit = 1
+value = 1,25
+volume = 600
+parsistent = 0
+ignorehitpause = 1
+
+[State 1016,Projectile]
+type = helper
+trigger1 = roundstate = 2
+trigger1 = movehit = 1
+name = "slow"
+id = 23432
+pos = 0,0
+postype = p1
+stateno = 23431
+helpertype = normal
+ownpal = 1
+keyctrl = 0
+ignorehitpause = 1
+parsistent = 0
+pausemovetime = 9999999
+
+[State 1000, 残心]
+type = Explod
+trigger1 = movehit = 1
+trigger1 = numexplod(2002) = 0
+anim = f2002
+id = 2002
+postype = back
+removetime = 10
+pos = 100,-100
+sprpriority = -10
+scale = 99999,99999
+parsistent = 0
+ignorehitpause = 1
+
+[State 1016,Projectile]
+type = helper
+trigger1 = animelemtime(17) = 0
+name = "sakura"
+pos = 40,-110
+postype = p1
+stateno = 3101
+helpertype = normal
+ownpal = 1
+keyctrl = 0
+ignorehitpause = 1
+parsistent = 0
+
+[State 1000, 立ち戻り]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+[Statedef 3100]
+type     = S
+movetype = A
+physics  = S
+juggle   = 9
+velset   = 0,0
+anim     = 2500
+ctrl     = 0
+sprpriority = 2
+
+
+[State 3610,残像]
+type = Afterimage
+trigger1 = AnimElemtime(1) = 0
+trans = add
+timegap = 1
+framegap = 2
+time = 3
+length = 15
+palcolor = 256
+palinvertall = 0
+palbright = 50,50,50
+palcontrast = 240,110,90
+palpostbright = 60,20,20
+paladd = 0,0,0
+PalMul = .8 , .8 , .9
+parsistent = 1
+
+[State 3610,残像]
+type = Afterimagetime
+trigger1 = AnimElemtime(1) >= 0
+trigger1 = AnimElemtime(19) <= 0
+time = 2
+
+
+
+;---------------------------------------------------------------------------
+[Statedef 3101]
+type     = A
+movetype = I
+physics  = N
+juggle   = 9
+velset   = 0,0
+anim     = 2501
+ctrl     = 0
+sprpriority = 5
+
+
+[State 3610,残像]
+type = angledraw
+trigger1 = 1
+
+[State 3610,残像]
+type = angleset
+trigger1 = time = 0
+value = 0+random%360
+
+[State 3610,残像]
+type = angleadd
+trigger1 = 1
+value = 7
+
+[State 3610,残像]
+type = trans
+trigger1 = 1
+trans = add
+
+[State 3610,残像]
+type = angledraw
+trigger1 = 1
+scale = 0.5,0.5
+
+[State 3610,残像]
+type = assertspecial
+trigger1 = 1
+flag = noshadow
+
+[State 3610,残像]
+type = velset
+trigger1 = time = 0
+x = -1+random%3
+y = -1+random%3
+
+[State 3610,残像]
+type = varrandom
+trigger1 = time = 0
+v = 5
+range = -20,20
+
+[State 1016,Projectile]
+type = helper
+trigger1 = numhelper(3101) < 7
+trigger1 = time = 1
+name = "sakura"
+id = 3101
+pos = 13,11
+postype = p1
+stateno = 3101
+helpertype = normal
+ownpal = 1
+keyctrl = 0
+ignorehitpause = 1
+parsistent = 0
+
+[State 3610,残像]
+type = varset
+trigger1 = time = 0
+var(1) = -30
+
+[State 3610,残像]
+type = varadd
+trigger1 = time > 20
+var(1) = -10
+
+[State 3610,残像]
+type = palfx
+trigger1 = 1
+add = var(1),var(1),var(1)
+time = 2
+
+[State 3610,残像]
+type = destroyself
+trigger1 = time = 45
+
+
+;------------------
+; Hit by Fast Kung Fu Palm - shaking from the hit
+; (a custom gethit state)
+; See State 1020 for details
+[Statedef 3150]
+type    = A
+movetype= H
+physics = N
+velset = 0,0
+
+[State 1025, Anim] ;Custom animation
+type = ChangeAnim2
+trigger1 = 1
+value = 2510
+
+[State 1025, State]
+type = ChangeState
+trigger1 = time = 30
+value = 3151
+
+;------------------
+; Hit by Fast Kung Fu Palm - flying through the air
+; (a custom gethit state)
+[Statedef 3151]
+type    = A
+movetype= H
+physics = N
+
+[State 1025, Anim] ;Custom animation
+type = ChangeAnim2
+trigger1 = time = 0
+value = 2511
+
+[State 1026, Velocity]
+type = HitVelSet
+trigger1 = Time = 0
+x = 1
+y = 1
+
+[State 1026, Hit wall]
+type = ChangeState
+triggerall = Pos y < -2
+trigger1 = BackEdgeBodyDist <= 10
+trigger2 = FrontEdgeBodyDist <= 10
+value = 3152
+
+;------------------
+; Hit by Fast Kung Fu Palm - hit wall
+; (a custom gethit state)
+[Statedef 3152]
+type    = A
+movetype= H
+physics = N
+
+[State 1027, Turn]
+type = Turn
+trigger1 = (Time = 0) && (FrontEdgeBodyDist <= 30)
+
+[State 1027, Pos]
+type = PosAdd
+trigger1 = Time = 0
+x = 15 - BackEdgeBodyDist
+
+[State 1027, Stop moving]
+type = PosFreeze
+trigger1 = 1
+x = 1
+y = 1
+
+[State 1027, No scroll]
+type = ScreenBound
+trigger1 = 1
+value = 1
+movecamera = 0,1
+
+[State 1027, Spark]
+type = Explod
+trigger1 = Time = 0
+anim = F72
+pos = 0, floor (screenpos y) - 50
+postype = back
+sprpriority = 3
+
+[State 1027, Anim]
+type = ChangeAnim2
+trigger1 = Time = 0
+value = 2510
+
+[State 1027, Sound]
+type = PlaySnd
+trigger1 = Time = 0
+value = F7,0
+
+[State 1027, State]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 3153
+
+;------------------
+; Hit by Fast Kung Fu Palm - bounce off wall
+; (a custom gethit state)
+[Statedef 3153]
+type    = A
+movetype= H
+physics = N
+
+[State 1028, 1]
+type = NotHitBy
+trigger1 = 1
+value = , NA, NP
+
+[State 1028, Vel Y]
+type = VelSet
+trigger1 = Time = 0
+y = -1
+
+[State 1028, Vel X]
+type = VelSet
+trigger1 = Time = 0
+x =0.1
+
+[State 1028, Gravity]
+type = VelAdd
+trigger1 = 1
+y = .35
+
+[State 1028, Anim 5050] ;Self falling animation
+type = ChangeAnim
+trigger1 = Time = 0
+trigger1 = !SelfAnimExist(5052)
+value = 5050
+
+[State 1028, Anim 5052] ;Self falling animation (diagup type)
+type = ChangeAnim
+trigger1 = Time = 0
+trigger1 = SelfAnimExist(5052)
+value = 5052
+
+[State 1028, Anim 5060] ;Coming down - normal
+type = ChangeAnim
+trigger1 = Vel Y > -2
+trigger1 = Anim = 5050
+trigger1 = SelfAnimExist(5060)
+persistent = 0
+value = 5060
+
+[State 1028, Anim 5062] ;Coming down - diagup type
+type = ChangeAnim
+trigger1 = Vel Y > -2
+trigger1 = Anim = 5052
+trigger1 = SelfAnimExist(5062)
+persistent = 0
+value = 5062
+
+[State 1028, Hit ground]
+type = SelfState
+trigger1 = (Vel y > 0) && (Pos y >= 0)
+value = 5100
